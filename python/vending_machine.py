@@ -6,29 +6,35 @@ class vendingMachine():
 
     def __init__(self, parent=None):
         self.total_bottles_count = 500
-        self.inventory = {"total": 0, "still": 0, "fizzy": 0}
+        self.inventory = {const.TOTAL: 0, const.STILL: 0, const.FIZZY: 0}
 
     def init_default_settins(self):
         self.still_water_count = stillWater().count
         self.fizzy_water_count = fizzyWater().count
         self.still_water_cost = stillWater().price
         self.fizzy_water_cost = fizzyWater().price
-        self.inventory = {"total": self.total_bottles_count, 
-                          "still": {const.COUNT: self.still_water_count,
+        self.inventory = {const.TOTAL: self.total_bottles_count, 
+                          const.STILL: {const.COUNT: self.still_water_count,
                                    const.COST: self.still_water_cost}, 
-                          "fizzy": {const.COUNT: self.fizzy_water_count,
+                          const.FIZZY: {const.COUNT: self.fizzy_water_count,
                                    const.COST: self.fizzy_water_cost}}
     
     def update_inventory(self, water_type):
         current_count = self.inventory[water_type][const.COUNT]
-        current_total_count = self.inventory["total"]
+        current_total_count = self.inventory[const.TOTAL]
         updated_count = current_count - 1
         updated_total_count = current_total_count - 1
         self.inventory[water_type][const.COUNT] = updated_count
-        self.inventory["total"] = updated_total_count
+        self.inventory[const.TOTAL] = updated_total_count
 
     def get_current_inventory(self):
         return self.inventory
+    
+    def show_current_inventory(self):
+        print("| Inventory: Total - %s | Still Water - %s | Fizzy - %s |" % (
+            self.inventory[const.TOTAL], 
+            self.inventory[const.STILL][const.COUNT], 
+            self.inventory[const.FIZZY][const.COUNT]))
     
     def check_inventory(self, water_type):
         if self.inventory[water_type][const.COUNT]:

@@ -57,7 +57,7 @@ def main():
     print("\nPlease choose an option to add a coin")
 
     while not done:
-        print(vending_machine.get_current_inventory())
+        vending_machine.show_current_inventory()
         print("| 1 - 1c | 2 - 2c | 3 - 5c | 4 - 10c | 5 - Next | 6 - Cancel |")
 
         print("Total: ", total_coins)
