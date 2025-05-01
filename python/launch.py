@@ -1,12 +1,7 @@
-# IMPORT STANDARD LIBRARIES
-import os
-import logging
-
 # IMPORT LOCAL LIBRARIES
 import vending_machine as vm
 
 
-LOG = logging.getLogger(__name__)
 # type: dict[int,int]
 # dictionary that maps a user choice to coins value
 COINS = {"1":1, "2":2, "3":5, "4":10, "5":"Next", "6":0}
@@ -58,9 +53,6 @@ def choose_drink(vending_machine, total_coins):
 
 
 def main():
-    # logging.basicConfig(filename='vending_machine.log', level=logging.INFO)
-    # logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
-    logging.basicConfig(level=logging.INFO)
 
     vending_machine = vm.vendingMachine()
     vending_machine.init_default_settins()
@@ -72,9 +64,7 @@ def main():
 
     while not done:
         print(vending_machine.get_current_inventory())
-        # print("+", "-" * 58, "+")
         print("| 1 - 1c | 2 - 2c | 3 - 5c | 4 - 10c | 5 - Next | 6 - Cancel |")
-        # print("+", "-" * 58, "+")
 
         print("Total: ", total_coins)
         option = input()
