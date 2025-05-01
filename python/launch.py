@@ -13,9 +13,9 @@ def choose_drink(vending_machine, total_coins):
         return change
 
     print("\nChoose your drink")
-    print("| 1 - Still Water (30) | 2 - Fizzy Water (35) | 3 - Cancel |")
 
     while not drink_chosen:
+        print("| 1 - Still Water (30) | 2 - Fizzy Water (35) | 3 - Cancel |")
         water_option = input()
 
         if water_option not in const.WATER.keys():
@@ -41,6 +41,8 @@ def choose_drink(vending_machine, total_coins):
             print("Change: ", change)
             total_coins = change
             vending_machine.update_inventory(water_type)
+            vending_machine.show_current_inventory()
+            
         drink_chosen = True
 
     return total_coins
@@ -54,10 +56,10 @@ def main():
     total_coins = 0
     done = False
 
+    vending_machine.show_current_inventory()
     print("\nPlease choose an option to add a coin")
 
     while not done:
-        vending_machine.show_current_inventory()
         print("| 1 - 1c | 2 - 2c | 3 - 5c | 4 - 10c | 5 - Next | 6 - Cancel |")
 
         print("Total: ", total_coins)

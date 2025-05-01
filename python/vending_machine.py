@@ -31,7 +31,7 @@ class vendingMachine():
         return self.inventory
     
     def show_current_inventory(self):
-        print("| Inventory: Total - %s | Still Water - %s | Fizzy - %s |" % (
+        print("\n| Inventory : Total - %s | Still Water - %s | Fizzy - %s |" % (
             self.inventory[const.TOTAL], 
             self.inventory[const.STILL][const.COUNT], 
             self.inventory[const.FIZZY][const.COUNT]))
