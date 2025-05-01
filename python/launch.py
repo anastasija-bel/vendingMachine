@@ -1,11 +1,6 @@
 # IMPORT LOCAL LIBRARIES
 import vending_machine as vm
-
-
-# type: dict[int,int]
-# dictionary that maps a user choice to coins value
-COINS = {"1":1, "2":2, "3":5, "4":10, "5":"Next", "6":0}
-WATER = frozenset(["1", "2", "3"])
+import constants as const
 
 
 def choose_drink(vending_machine, total_coins):
@@ -23,18 +18,17 @@ def choose_drink(vending_machine, total_coins):
     while not drink_chosen:
         water_option = input()
 
-        if water_option not in WATER:
+        if water_option not in const.WATER.keys():
             print("\nPlease choose your drink from available options")
             continue
 
-        if water_option == "3":
+        water_type = const.WATER[water_option]
+        # cancel if a user chooses 3rd ("Cancel") option
+        if not isinstance(water_type, str):
             break
-        elif water_option == "2":
-            water_cost = vm.fizzyWater().price
-            water_type = "fizzy"
-        elif water_option == "1":
-            water_cost = vm.stillWater().price
-            water_type = "still"
+        
+        inventory = vending_machine.get_current_inventory()
+        water_cost = inventory[water_type][const.COST]
 
         if not vending_machine.check_inventory(water_type):
             break
@@ -69,11 +63,11 @@ def main():
         print("Total: ", total_coins)
         option = input()
 
-        if option not in COINS.keys():
+        if option not in const.COINS.keys():
             print("Please choose the available option")
             continue
 
-        coin_added = COINS[option]
+        coin_added = const.COINS[option]
 
         if not coin_added:
             print("Here is your change: ", total_coins)
