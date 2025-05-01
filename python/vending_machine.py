@@ -1,7 +1,7 @@
 class vendingMachine():
 
     def __init__(self, parent=None):
-        self.total_bottles_count = 5
+        self.total_bottles_count = 500
         self.inventory = {"total": 0, "still": 0, "fizzy": 0}
 
     def init_default_settins(self):
